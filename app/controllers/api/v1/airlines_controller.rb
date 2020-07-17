@@ -1,6 +1,8 @@
 module Api
   module V1
     class AirlinesController < ApplicationController
+      # deals with the InvalidAuthenticityToken
+      protect_from_forgery with: :null_session
       
       # get all the airlines from the database
       def index
