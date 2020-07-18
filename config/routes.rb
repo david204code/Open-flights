@@ -11,6 +11,6 @@ Rails.application.routes.draw do
     end
   end
 
-  get '#path', to: 'pages#index', via: :all
+  get '*pages', to: 'pages#index', via: :all
 
 end
