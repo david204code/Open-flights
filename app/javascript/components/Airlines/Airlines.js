@@ -17,8 +17,14 @@ const Airlines = () => {
     // so the effect will only fires when the value changes
   }, [airlines.length])
 
-  const list = airlines.map( item => {
-    return (<li key={item.attributes.name}>{item.attributes.name}</li>)
+  // iterate and pass in data for the Airline component
+  const grid = airlines.map( item => {
+    return (
+      <Airline 
+        key ={item.attributes.name}
+        attributes ={item.attributes}
+      />
+    )
   })
 
   return (
@@ -28,7 +34,7 @@ const Airlines = () => {
         <div className ="subheader">Honest, unbiased airlines reviews.</div>
       </div>
       <div className ="grid">
-        <ul>{list}</ul>
+        {grid}
       </div>
     </div>
 
