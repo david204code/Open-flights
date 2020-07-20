@@ -1,5 +1,6 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import axios from 'axios';
+import Airline from './Airline';
 
 const Airlines = () => {
   const [airlines, setAirlines] = useState([])
