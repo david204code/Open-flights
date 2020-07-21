@@ -70,6 +70,12 @@ const Airline = (props) => {
     axios.post('/api/v1/reviews', {review, airline_id})
     .then(resp => {
       // debugger
+      // updating the state of the app to get the latest review
+      // by pushing the latest review into arrays of reviews
+      const included = [...airline.included, resp.data.data]
+      setAirline({...airline, included})
+      // Clear out the form values after submition
+      setReview({title: '', description: '', score: 0})
     })
     .catch(resp => {})
   }
