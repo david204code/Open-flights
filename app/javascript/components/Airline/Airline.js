@@ -50,6 +50,18 @@ const Airline = (props) => {
     // pass in an empty argument/array so it only runs once
   }, [])
 
+  const handleChange = (e) => {
+    e.preventDefault()
+    
+    // Used state hook so can update review and state
+    setReview(Object.assign({}, review, {[e.target.name]: e.target.value}))
+    console.log('review: ', review)
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+  }
+
   return (
     <Wrapper>
       { 
@@ -67,7 +79,12 @@ const Airline = (props) => {
             </Main>
           </Coloumn>
           <Coloumn>
-            <ReviewForm/>
+            <ReviewForm
+              handleChange ={handleChange}
+              handleSubmit ={handleSubmit}
+              attributes ={airline.data.attributes}
+              review ={review}
+            />
           </Coloumn>          
         </Fragment>
       } 
