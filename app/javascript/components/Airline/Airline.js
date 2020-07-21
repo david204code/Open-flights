@@ -80,6 +80,14 @@ const Airline = (props) => {
     .catch(resp => {})
   }
 
+  const setRating = (score, e) => {
+    e.preventDefault()
+    // debugger
+
+    // use the useState hook for set review + spread operator
+    setReview({...review, score})
+  }
+
   return (
     <Wrapper>
       { 
@@ -100,6 +108,7 @@ const Airline = (props) => {
             <ReviewForm
               handleChange ={handleChange}
               handleSubmit ={handleSubmit}
+              setRating ={setRating}
               attributes ={airline.data.attributes}
               review ={review}
             />
