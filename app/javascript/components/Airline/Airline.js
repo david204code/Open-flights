@@ -60,6 +60,18 @@ const Airline = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+
+    // update the default headers with axios and pull in csrfToken
+    const csrfToken = document.querySelector('[name=csrf-token]').content
+    axios.defaults.headers.common['X-CSRF-TOKEN'] = csrfToken
+
+    const airline_id  = airline.data.id
+    // In between are the payload {}, review(object), airline_id
+    axios.post('/api/v1/reviews', {review, airline_id})
+    .then(resp => {
+      // debugger
+    })
+    .catch(resp => {})
   }
 
   return (
