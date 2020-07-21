@@ -6,6 +6,8 @@ const Airline = (props) => {
   // Object, set initial set to empty object
   const [airline, setAirline] = useState({})
   const [review, setReview] = useState({})
+  // ensure the state is set before accessing/using the data
+  const [loaded, setLoaded] = useState(false)
 
   useEffect(() => {
     // api/v1/airlines/:slug
@@ -16,7 +18,10 @@ const Airline = (props) => {
     console.log(props);
 
     axios.get(url)
-    .then( resp => setAirline(resp.data) )
+    .then( resp => {
+      setAirline(resp.data)
+      setLoaded(true) 
+    })
     .catch( resp => console.log(resp) )
 
     // pass in an empty argument/array so it only runs once
@@ -25,7 +30,15 @@ const Airline = (props) => {
   return (
     <div className ="wrapper">
       <div className ="column">
-        <div className ="header"></div>
+        { 
+        // check that the data is loaded
+          loaded && 
+          <Header
+          // passing data to the Header components
+            attributes ={airline.data.attributes}
+            reviews ={airline.included}
+          />
+        } 
         <div className ="reviews"></div>
       </div>
       <div className ="column">
